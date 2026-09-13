@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments and IDEs
+.venv/
+venv/
+env/
+.idea/
+.vscode/
+
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+api_info.txt
+*credentials*.json
+*secret*.json
+
+# Generated or private experiment artifacts
+result/
+results/
+output/
+outputs/
+checkpoints/
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+*.zip
+
+# Participant-level raw exports
+result.xlsx
+questionnaire_raw*.csv
+workshop_raw*.csv
+
+# OS and office temporary files
+.DS_Store
+Thumbs.db
+~$*

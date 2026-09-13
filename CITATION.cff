@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: "If you use this project, please cite the 2026 manuscript."
+title: "MLLM Perception of Color-Encoded Scalar Fields Reveals Model-Dependent Inversion of Chain-of-Thought"
+type: software
+authors:
+  - family-names: Liu
+    given-names: Minyi
+  - family-names: Zhao
+    given-names: Yue
+  - family-names: Song
+    given-names: Xiaoyang
+  - family-names: Qian
+    given-names: Shufan
+  - family-names: Bian
+    given-names: Yulong
+  - family-names: Zeng
+    given-names: Qiong
+repository-code: "https://github.com/xianzaren/multimodal-llm-visual-perception"
+url: "https://osf.io/y4pgm/"
+date-released: 2026-07-02
+preferred-citation:
+  type: article
+  title: "MLLM Perception of Color-Encoded Scalar Fields Reveals Model-Dependent Inversion of Chain-of-Thought"
+  authors:
+    - family-names: Liu
+      given-names: Minyi
+    - family-names: Zhao
+      given-names: Yue
+    - family-names: Song
+      given-names: Xiaoyang
+    - family-names: Qian
+      given-names: Shufan
+    - family-names: Bian
+      given-names: Yulong
+    - family-names: Zeng
+      given-names: Qiong
+  year: 2026
+  url: "https://jackz.cn/static/media/paper/03e096af81174c169c62568de5562038.pdf"
