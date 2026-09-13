@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Scalar-field questionnaire{% endblock %}
+{% block content %}
+<section class="card narrow">
+  <p class="eyebrow">Human perception demo</p>
+  <h1>Read values from a color-encoded scalar field</h1>
+  <p>You will complete {{ trial_count }} trials. In each trial, select one location for each requested value by comparing the field with its color legend.</p>
+  <p>This public demo uses generated stimuli and stores only a participant code. Do not enter a name, email address, or other identifying information.</p>
+  {% if error %}<p class="error" role="alert">{{ error }}</p>{% endif %}
+  <form action="{{ url_for('start') }}" method="post" class="stack">
+    <label for="participant_code">Participant code (optional)</label>
+    <input id="participant_code" name="participant_code" maxlength="32" pattern="[A-Za-z0-9_-]+" placeholder="e.g. P014">
+    <button type="submit">Begin</button>
+  </form>
+</section>
+{% endblock %}

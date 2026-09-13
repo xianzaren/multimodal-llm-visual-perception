@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}Trial {{ trial_index + 1 }}{% endblock %}
+{% block content %}
+<section class="card">
+  <div class="trial-header">
+    <div>
+      <p class="eyebrow">Trial {{ trial_index + 1 }} of {{ trial_count }}</p>
+      <h1>Select a location for <span id="currentTarget">{{ targets[0] }}</span></h1>
+    </div>
+    <p id="selectionCount" class="counter">0 / {{ targets|length }} points</p>
+  </div>
+
+  <p>Click the scalar field in this order: {{ targets|join(', ') }}. Use Undo if needed, then submit all five points.</p>
+
+  <div class="stimulus-layout">
+    <div id="imageWrap" class="image-wrap">
+      <img id="stimulus" src="{{ url_for('stimulus', trial_index=trial_index) }}" width="{{ field_width }}" height="{{ field_height }}" alt="Color-encoded scalar field">
+    </div>
+    <div class="legend" aria-label="Color legend from 0 to 1000">
+      <div class="legend-bar" style="background: linear-gradient(to top, {{ legend_css }});"></div>
+      <div class="legend-labels"><span>1000</span><span>750</span><span>500</span><span>250</span><span>0</span></div>
+    </div>
+  </div>
+
+  <form method="post" id="responseForm">
+    <input type="hidden" name="points_json" id="pointsJson">
+    <div class="actions">
+      <button type="button" class="secondary" id="undoButton" disabled>Undo</button>
+      <button type="submit" id="submitButton" disabled>Submit trial</button>
+    </div>
+  </form>
+</section>
+
+<script>
+  const targets = {{ targets|tojson }};
+  const image = document.getElementById('stimulus');
+  const imageWrap = document.getElementById('imageWrap');
+  const pointsInput = document.getElementById('pointsJson');
+  const currentTarget = document.getElementById('currentTarget');
+  const selectionCount = document.getElementById('selectionCount');
+  const undoButton = document.getElementById('undoButton');
+  const submitButton = document.getElementById('submitButton');
+  const points = [];
+  const markers = [];
+
+  function refresh() {
+    pointsInput.value = JSON.stringify(points);
+    selectionCount.textContent = `${points.length} / ${targets.length} points`;
+    currentTarget.textContent = points.length < targets.length ? targets[points.length] : 'complete';
+    undoButton.disabled = points.length === 0;
+    submitButton.disabled = points.length !== targets.length;
+  }
+
+  image.addEventListener('click', (event) => {
+    if (points.length >= targets.length) return;
+    const rect = image.getBoundingClientRect();
+    const x = Math.min(image.naturalWidth - 1, Math.max(0, Math.floor((event.clientX - rect.left) * image.naturalWidth / rect.width)));
+    const y = Math.min(image.naturalHeight - 1, Math.max(0, Math.floor((event.clientY - rect.top) * image.naturalHeight / rect.height)));
+    points.push({x, y});
+
+    const marker = document.createElement('span');
+    marker.className = 'marker';
+    marker.textContent = points.length;
+    marker.style.left = `${100 * (event.clientX - rect.left) / rect.width}%`;
+    marker.style.top = `${100 * (event.clientY - rect.top) / rect.height}%`;
+    imageWrap.appendChild(marker);
+    markers.push(marker);
+    refresh();
+  });
+
+  undoButton.addEventListener('click', () => {
+    if (!points.length) return;
+    points.pop();
+    markers.pop().remove();
+    refresh();
+  });
+
+  refresh();
+</script>
+{% endblock %}

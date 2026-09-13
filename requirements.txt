@@ -1,8 +1,10 @@
+Flask
 matplotlib
 numpy
 openpyxl
 pandas
 pillow
+pytest
 scipy
 seaborn
 statsmodels

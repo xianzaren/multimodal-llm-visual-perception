@@ -41,3 +41,4 @@ workshop_raw*.csv
 .DS_Store
 Thumbs.db
 ~$*
+questionnaire_app/instance/
