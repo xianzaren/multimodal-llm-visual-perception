@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Introduction</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  </head>
+  <body class="bg-light">
+    <div class="container pt-5">
+      <div class="card mx-auto shadow-sm" style="max-width: 1600px">
+        <div class="card-body">
+          <h2 class="card-title mb-4">Introduction to Experiments</h2>
+          <p>
+            This study aims to explore the impact of colormap on aggregation
+            tasks under different luminance conditions.<br />
+            In each trial, one heatmap along with its colormap will be shown, as
+            the example below:<br />
+            <img
+              src="{{ url_for('static', filename='images/example.png') }}"
+              alt="Example"
+              class="img-fluid d-block mx-auto"
+              style="max-width: 30%"
+            /><br />
+            任务：参与者需要在给定区域内寻找值为1.0--0.0区间内五个点的坐标。<br /><br />
+            实验分为三步<br />
+            1.色盲测试:包含 6 张图片，用于确保您的视觉能够正常参与实验;<br />
+            2.实验主体部分:包含10张图片，您需要按网页上的要求完成任务;<br />
+            3. 填写个人信息：用于后续数据分析。.<br /><br />
+          </p>
+          <div class="d-grid">
+            <a href="{{ url_for('color_test') }}" class="btn btn-success"
+              >Go on</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+  </body>
+</html>

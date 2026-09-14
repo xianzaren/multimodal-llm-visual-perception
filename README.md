@@ -43,7 +43,6 @@ Fine-tuning uses 9,450 image-prompt pairs for Task 1 and 9,000 pairs for Task 2.
 |-- task1/                         # Value-identification dataset and evaluation scripts
 |-- task2/                         # Gradient-comparison dataset and evaluation scripts
 |-- visualization/                # Figure and result-visualization scripts
-|-- questionnaire_app/             # Lightweight, privacy-safe questionnaire demo
 |-- questionnaire or workshop/    # Legacy human-study materials (not modified here)
 |-- GroupingImages.py              # Image grouping utility
 |-- Step1GetRGB.py                 # Colormap-to-RGB extraction utility
@@ -52,8 +51,6 @@ Fine-tuning uses 9,450 image-prompt pairs for Task 1 and 9,000 pairs for Task 2.
 ```
 
 The human questionnaire and workshop files document an earlier phase of the project that informed the two-stage perception workflow. They are not the source of the human baselines reported in the 2026 manuscript. These pre-existing participant exports are not modified by this update and should be reviewed for consent and identifying fields before reuse or redistribution.
-
-A cleaned, code-only demo of the questionnaire workflow is available in [`questionnaire_app/`](questionnaire_app/). It generates small synthetic stimuli at runtime and does not contain participant records or the original experiment assets.
 
 ## Data and reproducibility
 

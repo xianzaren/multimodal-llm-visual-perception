@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>实验页面</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <style>
+        #imageContainer {
+            position: relative;
+            display: inline-block;
+        }
+        #imageContainer img {
+            max-width: 100%;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+        }
+        .marker {
+            position: absolute;
+            border: 3px solid #fff;
+            border-radius: 50%;
+            width: 12px;
+            height: 12px;
+            margin: -7px 0 0 -7px;
+            pointer-events: none;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+        }
+        .marker1 { background-color: red; }
+        .marker2 { background-color: blue; }
+        .marker3 { background-color: green; }
+        .marker4 { background-color: orange; }
+        .marker5 { background-color: purple; }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container pt-5">
+        <div class="mb-3 text-center">
+            <span id="progressDisplay" style="font-weight: bold;"></span>
+        </div>
+        <p class="text-left" style="padding-left: 20%">
+            你需要结合右侧图例的颜色，在左侧的标量场图上寻找相应值的点<br>
+            1. 请选择值为<strong>1000的点(1.0)</strong>.<br>
+            2. 请选择值为<strong>750的点(0.75)</strong>.<br>
+            3. 请选择值为<strong>500的点(0.5)</strong>.<br>
+            4. 请选择值为<strong>250的点(0.25)</strong>.<br>
+            5. 请选择值为<strong>0的点(0.0)</strong>.<br>
+        </p>
+
+        <div id="imageContainer" class="mx-auto d-block mb-4" style="max-width: 820px">
+            <img id="demoImage" src="{{ url_for('static', filename='images/lightness_pic/' + image_id + '.png') }}" alt="DEM 图像">
+        </div>
+
+        <form id="resultForm">
+            {% for i in range(1, 6) %}
+                <input type="hidden" name="{{ i }}_x" id="{{ i }}_x">
+                <input type="hidden" name="{{ i }}_y" id="{{ i }}_y">
+            {% endfor %}
+            <input type="hidden" name="experiment_index" id="experiment_index" value="{{ experiment_index }}">
+            <input type="hidden" name="image_id" id="image_id" value="{{ image_id }}">
+        </form>
+        <div class="d-grid">
+            <button type="submit" id="submitButton" class="btn btn-primary" disabled>提交</button>
+        </div>
+    </div>
+
+    <script>
+        let experimentIndex = parseInt("{{ experiment_index }}");
+        const totalExperiments = 10;
+        const image = document.getElementById("demoImage");
+        const container = document.getElementById("imageContainer");
+        const resultForm = document.getElementById("resultForm");
+        const progressDisplay = document.getElementById("progressDisplay");
+        let clickCount = 0;
+        let markers = [];
+
+        function updateProgress() {
+            progressDisplay.textContent = `实验进度: ${experimentIndex + 1} / ${totalExperiments}`;
+        }
+
+        function updateImage() {
+            fetch("{{ url_for('static', filename='Data/image_params.json') }}")
+                .then(response => response.json())
+                .then(data => {
+                    if (data.images.length > experimentIndex) {
+                        let newImageId = data.images[experimentIndex].without_border;
+                        document.getElementById("image_id").value = newImageId;
+                        image.src = "{{ url_for('static', filename='images/lightness_pic/') }}" + newImageId + ".png";
+                    } else {
+                        console.error("❌ 图像 ID 超出范围");
+                    }
+                    updateProgress();
+                })
+                .catch(error => console.error("❌ 加载图像失败:", error));
+        }
+
+        updateImage();
+
+        image.addEventListener("click", function (e) {
+            if (clickCount >= 5) return;
+
+            const rect = image.getBoundingClientRect();
+            const x = Math.round((e.clientX - rect.left) * (image.naturalWidth / image.width));
+            const y = Math.round((e.clientY - rect.top) * (image.naturalHeight / image.height));
+
+            console.log(`🟢 Clicked Point ${clickCount + 1}: (${x}, ${y})`);
+
+            document.getElementById(`${clickCount + 1}_x`).value = x;
+            document.getElementById(`${clickCount + 1}_y`).value = y;
+
+            let marker = document.createElement("div");
+            marker.className = `marker marker${clickCount + 1}`;
+            marker.style.left = `${e.clientX - rect.left}px`;
+            marker.style.top = `${e.clientY - rect.top}px`;
+            container.appendChild(marker);
+            markers.push(marker);
+
+            fetch(`/query_value?x=${x}&y=${y}&image_id=${document.getElementById("image_id").value}&experiment_index=${experimentIndex}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        console.error(`❌ 查询错误: ${data.error} (x=${x}, y=${y})`);
+                    } else {
+                        console.log(`✅ 查询成功: (${x}, ${y}) -> 值: ${data.value}`);
+                    }
+
+                    if (clickCount ===5) {
+                        document.getElementById("submitButton").disabled = false;
+                    }
+                })
+                .catch(error => console.error("❌ 获取 query_value 失败:", error));
+
+            clickCount++;
+        });
+
+        document.getElementById("submitButton").addEventListener("click", function (event) {
+            event.preventDefault();
+
+            const formData = new FormData(resultForm);
+            formData.append("experiment_index", experimentIndex);  // ✅ 确保传递 experiment_index
+            formData.append("image_id", document.getElementById("image_id").value);
+
+            console.log("📩 发送数据:", Object.fromEntries(formData));
+
+            fetch(window.location.href, { method: "POST", body: formData })
+                .then(() => {
+                    clickCount = 0;
+                    markers.forEach(marker => marker.remove());
+                    markers = [];
+                    document.getElementById("submitButton").disabled = true;
+
+                    experimentIndex++;  // ✅ 确保 experiment_index 正确递增
+                    document.getElementById("experiment_index").value = experimentIndex; // ✅ 更新隐藏字段的值
+
+                    if (experimentIndex < totalExperiments) {
+                        updateProgress();
+                        updateImage();
+                    } else {
+                        window.location.href = "{{ url_for('thanks') }}";
+                    }
+                })
+                .catch(error => console.error("❌ 提交失败:", error));
+        });
+    </script>
+</body>
+</html>

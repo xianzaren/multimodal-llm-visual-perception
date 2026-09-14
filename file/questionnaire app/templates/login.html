@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+</head>
+<body class="bg-light">
+    <div class="container pt-5">
+        <div class="card mx-auto shadow-sm" style="max-width: 400px;">
+            <div class="card-body">
+                <h2 class="card-title text-center mb-4">请输入您的个人信息.</h2>
+                <form method="post">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">姓名: </label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <!-- 新增专业字段 -->
+                    <div class="mb-3">
+                        <label for="major" class="form-label">专业: </label>
+                        <input type="text" class="form-control" id="major" name="major" required>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">start</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>

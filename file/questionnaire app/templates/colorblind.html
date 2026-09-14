@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Color Vision Test</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+</head>
+<body class="bg-light">
+    <div class="container pt-5">
+        <h2 class="mb-4 text-center">Color Vision Test</h2>
+        <!-- Display messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}" role="alert">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        <p class="text-center">请输入你在各个图中看到的数字，您必须全部回答正确才能进入下一个测试</p>
+        <form method="post">
+            {% for row in [0, 1] %}
+            <div class="row mb-4">
+                {% for col in [1,2,3] %}
+                    {% set idx = row * 3 + col %}
+                    <div class="col-md-4 text-center">
+                        <img src="{{ url_for('static', filename='images/color_test/test' ~ (idx|string) ~ '.png') }}" alt="Test Image {{ idx }}" class="img-fluid" style="max-width:300px;">
+                        <div class="mt-2">
+                            <input type="text" name="ans{{ idx }}" class="form-control" placeholder="Enter number in image {{ idx }}" required>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+            <div class="d-grid mt-4" style="width: 20%; margin: 40px auto 0;">
+                <button type="submit" class="btn btn-primary">Submit Test</button>
+            </div>
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>

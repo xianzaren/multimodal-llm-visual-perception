@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Done</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+</head>
+<body class="bg-light">
+    <div class="container pt-5">
+        <div class="card mx-auto shadow-sm" style="max-width: 500px;">
+            <div class="card-body text-center">
+                <h2 class="mb-4">Thank you for your participation!</h2>
+                <p>Your data has been successfully submitted.</p>
+                <a href="{{ url_for('intro') }}" class="btn btn-primary">Return to the homepage.</a>
+            </div>
+        </div> 
+    </div>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>
