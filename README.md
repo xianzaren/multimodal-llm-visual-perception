@@ -1,5 +1,7 @@
 # MLLM Perception of Color-Encoded Scalar Fields
 
+**English** | [简体中文](README_CN.md)
+
 Official code and research materials for:
 
 > **MLLM Perception of Color-Encoded Scalar Fields Reveals Model-Dependent Inversion of Chain-of-Thought**  
@@ -13,8 +15,8 @@ Color-encoded scalar fields are widely used in scientific and geospatial analysi
 
 We study two graphical-perception tasks:
 
-1. **Value identification** - locate a coordinate whose color corresponds to a target scalar value.
-2. **Gradient comparison** - determine which of two marked regions has the steeper scalar gradient.
+1. **Value identification** — locate a coordinate whose color corresponds to a target scalar value.
+2. **Gradient comparison** — determine which of two marked regions has the steeper scalar gradient.
 
 The evaluation compares baseline prompting, decomposed-step prompting, chain-of-thought (CoT) prompting, and task-specific fine-tuning.
 
@@ -29,10 +31,10 @@ The evaluation compares baseline prompting, decomposed-step prompting, chain-of-
 
 The structured prompting framework follows a two-stage perception workflow:
 
-1. **Legend understanding** - infer the colormap, value range, and colors representing relevant values or extrema.
-2. **Linking legend to visualization** - locate the matching value or compare color-change rates in marked regions.
+1. **Legend understanding** — infer the colormap, value range, and colors representing relevant values or extrema.
+2. **Linking legend to visualization** — locate the matching value or compare color-change rates in marked regions.
 
-The 2026 study evaluates five MLLMs: GPT-5.4, Claude Opus 4.7, Gemini 3.1 Pro, Seed 2.0 Pro, and InternVL2-8B. The benchmark uses five Perlin-noise spatial frequencies and nine colormaps, producing 45 Task 1 visualizations and 180 Task 2 visualizations at 820 x 630 pixels.
+The 2026 study evaluates five MLLMs: GPT-5.4, Claude Opus 4.7, Gemini 3.1 Pro, Seed 2.0 Pro, and InternVL2-8B. The benchmark uses five Perlin-noise spatial frequencies and nine colormaps, producing 45 Task 1 visualizations and 180 Task 2 visualizations at 820 × 630 pixels.
 
 Fine-tuning uses 9,450 image-prompt pairs for Task 1 and 9,000 pairs for Task 2. Large datasets and complete experimental outputs are hosted on OSF instead of being duplicated in Git.
 
@@ -40,17 +42,24 @@ Fine-tuning uses 9,450 image-prompt pairs for Task 1 and 9,000 pairs for Task 2.
 
 ```text
 .
-|-- task1/                         # Value-identification dataset and evaluation scripts
-|-- task2/                         # Gradient-comparison dataset and evaluation scripts
-|-- visualization/                # Figure and result-visualization scripts
-|-- questionnaire or workshop/    # Legacy human-study materials (not modified here)
+|-- task1/                         # Task 1 generation, conversion, error, and plotting scripts
+|-- task2/                         # Task 2 generation, accuracy, and plotting scripts
+|-- codes/api/                     # Original model API experiment scripts
+|-- visualization/                # Curated visualization scripts and compact result data
+|-- drawpic/                       # Original paper-figure scripts
+|-- finetune data/                 # Fine-tuning data-construction scripts
+|-- file/questionnaire app/       # Original Flask questionnaire source and templates
+|-- questionnaire or workshop/    # Legacy human-study exports
+|-- docs/                          # Local-material audit notes
 |-- GroupingImages.py              # Image grouping utility
 |-- Step1GetRGB.py                 # Colormap-to-RGB extraction utility
 |-- finetune_exp2.jsonl            # Task 2 fine-tuning manifest/sample
 `-- LLMPerception_Supp.pdf         # Supplementary material
 ```
 
-The human questionnaire and workshop files document an earlier phase of the project that informed the two-stage perception workflow. They are not the source of the human baselines reported in the 2026 manuscript. These pre-existing participant exports are not modified by this update and should be reviewed for consent and identifying fields before reuse or redistribution.
+The repository combines the curated public materials with existing local research-source snapshots. Some scripts retain the directory layout, filenames, and model settings used during their original experiment stage. `codes/api/` mainly reflects the earlier API workflow, while the OSF project contains the archived datasets, prompts, and results used for research review.
+
+The questionnaire and workshop files document an earlier phase that informed the two-stage perception workflow. They are not the source of the human baselines reported in the 2026 manuscript. Existing participant exports should be reviewed for consent and identifying fields before reuse or redistribution.
 
 ## Data and reproducibility
 
@@ -69,11 +78,11 @@ Install the analysis dependencies with:
 python -m pip install -r requirements.txt
 ```
 
-The scripts are a research snapshot and some expect the directory layout used during the experiments. Before running a script, update its input and output paths to point to the corresponding files downloaded from OSF.
+This repository is a research snapshot rather than a single-command reproduction package. Before running a script, inspect its input/output paths and point them to the corresponding OSF files. Original API scripts also require a local `api_info.txt`; that credential file is deliberately excluded from Git.
 
 ## Privacy and responsible use
 
-Do not commit participant names, contact details, demographics, submission timestamps, API credentials, model weights, private manuscripts, or raw local experiment folders. The legacy human-study exports predate this documentation update and may contain identifying fields; review and anonymize them only with appropriate authorization. If you reuse any human-study materials, follow the consent terms and research-ethics requirements applicable to your institution.
+Do not commit participant names, contact details, demographics, submission timestamps, API credentials, model weights, private manuscripts, or raw local experiment folders. Legacy human-study exports may contain identifying fields and should be reused only under the applicable consent and research-ethics requirements.
 
 ## Citation
 
