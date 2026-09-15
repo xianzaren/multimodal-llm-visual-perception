@@ -94,7 +94,7 @@ python -m pip install -r requirements.txt
 | 研究重点 | 评估 MLLM 图形感知，并考察结构化提示和微调 | 解释 CoT 的模型依赖性反转，并提出应根据模型能力选择提示策略 |
 | 人类证据 | 新开展 18 人参与者实验和 workshop | 将已有两步感知流程作为方法框架，并按修订协议从 Reda 等人的数据推导人类基线 |
 | 评估模型 | GPT-4o、Gemini 1.5 Pro、GLM-4V-9B、InternVL2-8B、InternVL2-40B | GPT-5.4、Claude Opus 4.7、Gemini 3.1 Pro、Seed 2.0 Pro、InternVL2-8B |
-| Task 1 名称 | quantity estimation（数量估计） | value identification（数值识别） |
+| Task 1 名称 | quantity estimation（数值估计） | value identification（数值识别） |
 | 基准图像 | Task 1 为 45 张、Task 2 为 180 张，分辨率 987 × 630 | 数量保持不变，分辨率为 820 × 630 |
 | Task 1 微调数据 | 报告 44,775 个图像—提示词对 | 使用 9,450 个训练对：每个标量场提出 21 个数值问题，并加入 30% 随机裁剪增强 |
 | 微调方法 | 对 baseline、CoT 和 linking step 使用真实答案监督 | 明确使用 InternVL2-8B LoRA；Task 1 使用交叉熵与空间距离联合损失，Task 2 使用交叉熵 |
