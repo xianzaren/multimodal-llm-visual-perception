@@ -87,7 +87,7 @@ The OSF project contains materials from both research stages:
 - lowercase result packages containing aggregate workbooks, fine-tuning results, and earlier-model records;
 - uppercase result packages containing additional outputs for the 2026 model panel.
 
-Download them from [OSF project y4pgm](https://osf.io/y4pgm/). The fine-tuning archives are several gigabytes, so they should remain on OSF rather than in this repository.
+Access the complete archives through [OSF project y4pgm](https://osf.io/y4pgm/).
 
 Install the analysis dependencies with:
 
@@ -103,7 +103,7 @@ Do not commit participant names, contact details, demographics, submission times
 
 ## Citation
 
-The supplied 2025 manuscript is an anonymous submission copy. This repository therefore identifies it by title and project year without inventing an author list. The named 2026 follow-up citation is provided in the final section below.
+The 2025 manuscript is an anonymous submission copy and is identified here by title and project year. The named 2026 follow-up citation is provided in the final section below.
 
 ## License
 
@@ -127,7 +127,7 @@ The [2026 revised manuscript](https://jackz.cn/static/media/paper/03e096af81174c
 | Task 1 metric | Base-2 logarithmic error | Normalized absolute percentage error; Step 1 RGB outputs are mapped back through the colormap with CIELAB2000 |
 | Principal result | Prompting and fine-tuning effects are examined across tasks and models | CoT helps some models but harms stronger models by up to 84.76% relative error on Task 1; fine-tuning improves error by up to 43.80% |
 
-The GitHub API scripts currently preserved in [`codes/api/`](codes/api/) explicitly use GPT-4o and therefore document the 2025 workflow. The additional 2026 proprietary-model outputs are archived on OSF in the uppercase [`Task1.zip`](https://osf.io/download/69f49481b19cd9a17a875458/?view_only=be060a5816bf4edbaaf66a695d57dee0) and [`Task2.zip`](https://osf.io/download/69f494bd558fb0c42bd94811/?view_only=be060a5816bf4edbaaf66a695d57dee0) packages. The lowercase `task1.zip` and `task2.zip` packages retain aggregate workbooks, fine-tuning results, and earlier labels such as `8b` and `40b`. This README does not claim that the original GitHub API scripts reproduce every 2026 model call.
+The GitHub API scripts currently preserved in [`codes/api/`](codes/api/) explicitly use GPT-4o and therefore document the 2025 workflow. The additional 2026 proprietary-model outputs are archived on OSF in the uppercase [`Task1.zip`](https://osf.io/download/69f49481b19cd9a17a875458/?view_only=be060a5816bf4edbaaf66a695d57dee0) and [`Task2.zip`](https://osf.io/download/69f494bd558fb0c42bd94811/?view_only=be060a5816bf4edbaaf66a695d57dee0) packages. The lowercase `task1.zip` and `task2.zip` packages retain aggregate workbooks, fine-tuning results, and earlier labels such as `8b` and `40b`.
 
 If the follow-up paper is cited, use:
 

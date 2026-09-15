@@ -87,7 +87,7 @@ OSF 项目包含两个研究阶段的材料：
 - 包含汇总工作簿、微调结果和早期模型记录的小写结果包；
 - 包含 2026 年模型组新增输出的大写结果包。
 
-请从 [OSF 项目 y4pgm](https://osf.io/y4pgm/) 下载。微调归档达到数 GB，应继续保留在 OSF，而不是重复提交到 GitHub。
+完整归档见 [OSF 项目 y4pgm](https://osf.io/y4pgm/)。
 
 安装分析依赖：
 
@@ -103,7 +103,7 @@ python -m pip install -r requirements.txt
 
 ## 引用
 
-你提供的 2025 年论文是匿名投稿版本，因此本 README 仅以论文标题和项目年份标识它，不为其虚构作者名单。具有完整作者信息的 2026 年后续论文引用列在最后一节。
+2025 年论文是匿名投稿版本，此处以论文标题和项目年份标识。具有完整作者信息的 2026 年后续论文引用列在最后一节。
 
 ## 许可证
 
@@ -127,7 +127,7 @@ python -m pip install -r requirements.txt
 | Task 1 指标 | 以 2 为底的对数误差 | 归一化绝对百分比误差；Step 1 的 RGB 输出通过 CIELAB2000 映射回色图数值 |
 | 核心结果 | 分析提示和微调在不同任务及模型上的效果 | CoT 对部分模型有益，却让较强模型的 Task 1 相对误差最多增加 84.76%；微调最多降低 43.80% 的相对误差 |
 
-GitHub 当前保存的 [`codes/api/`](codes/api/) 脚本明确调用 GPT-4o，因此对应 2025 年工作流。2026 年新增专有模型的输出保存在 OSF 的大写 [`Task1.zip`](https://osf.io/download/69f49481b19cd9a17a875458/?view_only=be060a5816bf4edbaaf66a695d57dee0) 和 [`Task2.zip`](https://osf.io/download/69f494bd558fb0c42bd94811/?view_only=be060a5816bf4edbaaf66a695d57dee0) 中。小写 `task1.zip`、`task2.zip` 则保留汇总工作簿、微调结果和 `8b`、`40b` 等早期标签。本 README 不声称原始 GitHub API 脚本能够重现全部 2026 年模型调用。
+GitHub 当前保存的 [`codes/api/`](codes/api/) 脚本明确调用 GPT-4o，因此对应 2025 年工作流。2026 年新增专有模型的输出保存在 OSF 的大写 [`Task1.zip`](https://osf.io/download/69f49481b19cd9a17a875458/?view_only=be060a5816bf4edbaaf66a695d57dee0) 和 [`Task2.zip`](https://osf.io/download/69f494bd558fb0c42bd94811/?view_only=be060a5816bf4edbaaf66a695d57dee0) 中。小写 `task1.zip`、`task2.zip` 则保留汇总工作簿、微调结果和 `8b`、`40b` 等早期标签。
 
 如需引用后续论文，请使用：
 
