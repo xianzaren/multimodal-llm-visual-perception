@@ -2,14 +2,13 @@
 
 **English** | [简体中文](README_CN.md)
 
-Research code and project materials for the 2025 project manuscript:
+Code and research materials for the 2025 project manuscript:
 
 > **Evaluating and Adapting Multimodal LLMs for Graphical Perception in Color-Encoded Scalar Field Visualization**
-> 2025 project manuscript (anonymous submission copy)
 
 [OSF datasets, prompts, and results](https://osf.io/y4pgm/) | [Supplementary material](LLMPerception_Supp.pdf)
 
-> **Version scope.** This repository mainly preserves the implementation and research materials completed during the 2025 project stage. A later 2026 manuscript is documented only in the final [follow-up comparison](#2026-follow-up-paper-and-comparison).
+> **Scope.** This repository documents the 2025 project. A later paper is summarized only in the final [2026 comparison](#2026-follow-up-paper-and-comparison).
 
 ## Overview
 
@@ -66,28 +65,15 @@ This index connects the 2025 project activities to the corresponding GitHub file
 |-- finetune data/                 # Fine-tuning data-construction scripts
 |-- file/questionnaire app/       # Original Flask questionnaire source and templates
 |-- questionnaire or workshop/    # Legacy human-study exports
-|-- docs/                          # Local-material audit notes
 |-- GroupingImages.py              # Image grouping utility
 |-- Step1GetRGB.py                 # Colormap-to-RGB extraction utility
 |-- finetune_exp2.jsonl            # Task 2 fine-tuning manifest/sample
 `-- LLMPerception_Supp.pdf         # Supplementary material
 ```
 
-The repository combines curated public materials with the 2025 research-source snapshot. Some scripts retain the directory layout, filenames, and model settings used during that project stage. `codes/api/` reflects the original GPT-4o API workflow, while the OSF project combines archived materials from the 2025 project and the 2026 revision.
+## Using the materials
 
-The questionnaire and workshop files document the 2025 empirical-study phase that informed the two-stage perception workflow. They are not the source of the human baselines reported in the 2026 manuscript. Existing participant exports should be reviewed for consent and identifying fields before reuse or redistribution.
-
-## Data and reproducibility
-
-The OSF project contains materials from both research stages:
-
-- benchmark datasets for both tasks;
-- fine-tuning datasets;
-- baseline, decomposed-step, and CoT prompts;
-- lowercase result packages containing aggregate workbooks, fine-tuning results, and earlier-model records;
-- uppercase result packages containing additional outputs for the 2026 model panel.
-
-Access the complete archives through [OSF project y4pgm](https://osf.io/y4pgm/).
+Datasets, prompts, model outputs, and experiment results are available from [OSF project y4pgm](https://osf.io/y4pgm/).
 
 Install the analysis dependencies with:
 
@@ -95,19 +81,7 @@ Install the analysis dependencies with:
 python -m pip install -r requirements.txt
 ```
 
-This repository is a research snapshot rather than a single-command reproduction package for either manuscript version. Before running a script, identify its version, inspect its input/output paths, and point it to the corresponding OSF files. Original API scripts also require a local `api_info.txt`; that credential file is deliberately excluded from Git.
-
-## Privacy and responsible use
-
-Do not commit participant names, contact details, demographics, submission timestamps, API credentials, model weights, private manuscripts, or raw local experiment folders. Legacy human-study exports may contain identifying fields and should be reused only under the applicable consent and research-ethics requirements.
-
-## Citation
-
-The 2025 manuscript is an anonymous submission copy and is identified here by title and project year. The named 2026 follow-up citation is provided in the final section below.
-
-## License
-
-No open-source license has been declared yet. Until a license is added, the repository is publicly viewable but reuse rights are not granted automatically. Please contact the authors before redistributing code or data outside the terms stated by the linked research artifacts.
+Before running a script, update its input and output paths to the downloaded files. The API experiment scripts require a local `api_info.txt` containing the relevant credentials.
 
 ## 2026 follow-up paper and comparison
 
@@ -127,15 +101,4 @@ The [2026 revised manuscript](https://jackz.cn/static/media/paper/03e096af81174c
 | Task 1 metric | Base-2 logarithmic error | Normalized absolute percentage error; Step 1 RGB outputs are mapped back through the colormap with CIELAB2000 |
 | Principal result | Prompting and fine-tuning effects are examined across tasks and models | CoT helps some models but harms stronger models by up to 84.76% relative error on Task 1; fine-tuning improves error by up to 43.80% |
 
-The GitHub API scripts currently preserved in [`codes/api/`](codes/api/) explicitly use GPT-4o and therefore document the 2025 workflow. The additional 2026 proprietary-model outputs are archived on OSF in the uppercase [`Task1.zip`](https://osf.io/download/69f49481b19cd9a17a875458/?view_only=be060a5816bf4edbaaf66a695d57dee0) and [`Task2.zip`](https://osf.io/download/69f494bd558fb0c42bd94811/?view_only=be060a5816bf4edbaaf66a695d57dee0) packages. The lowercase `task1.zip` and `task2.zip` packages retain aggregate workbooks, fine-tuning results, and earlier labels such as `8b` and `40b`.
-
-If the follow-up paper is cited, use:
-
-```bibtex
-@misc{liu2026mllmperception,
-  title  = {MLLM Perception of Color-Encoded Scalar Fields Reveals Model-Dependent Inversion of Chain-of-Thought},
-  author = {Liu, Minyi and Zhao, Yue and Song, Xiaoyang and Qian, Shufan and Bian, Yulong and Zeng, Qiong},
-  year   = {2026},
-  url    = {https://jackz.cn/static/media/paper/03e096af81174c169c62568de5562038.pdf}
-}
-```
+The GitHub API scripts in [`codes/api/`](codes/api/) use GPT-4o and correspond to the 2025 workflow. Additional 2026 model outputs are available in the OSF [`Task1.zip`](https://osf.io/download/69f49481b19cd9a17a875458/?view_only=be060a5816bf4edbaaf66a695d57dee0) and [`Task2.zip`](https://osf.io/download/69f494bd558fb0c42bd94811/?view_only=be060a5816bf4edbaaf66a695d57dee0) packages.

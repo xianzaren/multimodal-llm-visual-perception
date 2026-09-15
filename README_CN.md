@@ -2,14 +2,13 @@
 
 [English](README.md) | **简体中文**
 
-2025 年项目论文所对应的研究代码与项目材料：
+2025 年项目论文的代码与研究材料：
 
 > **Evaluating and Adapting Multimodal LLMs for Graphical Perception in Color-Encoded Scalar Field Visualization**
-> 2025 年项目论文（匿名投稿版本）
 
 [OSF 数据集、提示词与结果](https://osf.io/y4pgm/) | [补充材料](LLMPerception_Supp.pdf)
 
-> **版本范围。** 本仓库主要保存 2025 年项目阶段完成的实现和研究材料。后续 2026 年论文仅在 README 最后一节的[版本对照](#2026-年后续论文与版本对照)中说明。
+> **内容范围。** 本仓库介绍 2025 年项目；后续论文仅在最后的[2026 年版本对照](#2026-年后续论文与版本对照)中简要说明。
 
 ## 项目概述
 
@@ -66,28 +65,15 @@
 |-- finetune data/                 # 微调数据构建脚本
 |-- file/questionnaire app/       # 原始 Flask 问卷源码和模板
 |-- questionnaire or workshop/    # 早期人类研究导出
-|-- docs/                          # 本地材料审计说明
 |-- GroupingImages.py              # 图像分组工具
 |-- Step1GetRGB.py                 # 色图到 RGB 的提取工具
 |-- finetune_exp2.jsonl            # Task 2 微调清单/样例
 `-- LLMPerception_Supp.pdf         # 补充材料
 ```
 
-该仓库同时包含整理后的公开材料和 2025 年研究源码快照。部分脚本保留了该项目阶段使用的目录、文件名和模型设置。`codes/api/` 对应原始 GPT-4o API 工作流；OSF 项目同时保存 2025 年项目和 2026 年修订阶段的归档材料。
+## 使用项目材料
 
-问卷和 workshop 文件记录了 2025 年促成两阶段感知流程的参与者实验，但不是 2026 年论文中人类基线的来源。再次使用或分发参与者导出前，应检查知情同意和可识别字段。
-
-## 数据与可复现性
-
-OSF 项目包含两个研究阶段的材料：
-
-- 两个任务的基准数据集；
-- 微调数据集；
-- baseline、分步和 CoT 提示词；
-- 包含汇总工作簿、微调结果和早期模型记录的小写结果包；
-- 包含 2026 年模型组新增输出的大写结果包。
-
-完整归档见 [OSF 项目 y4pgm](https://osf.io/y4pgm/)。
+数据集、提示词、模型输出和实验结果见 [OSF 项目 y4pgm](https://osf.io/y4pgm/)。
 
 安装分析依赖：
 
@@ -95,19 +81,7 @@ OSF 项目包含两个研究阶段的材料：
 python -m pip install -r requirements.txt
 ```
 
-本仓库是研究快照，不是任一论文版本的单命令复现包。运行脚本前应先确认其所属版本，再检查输入/输出路径并指向相应 OSF 文件。原始 API 脚本还需要本地 `api_info.txt`；该凭据文件已被 Git 明确排除。
-
-## 隐私与负责任使用
-
-不要提交参与者姓名、联系方式、人口统计字段、提交时间、API 凭据、模型权重、私人论文或完整本地实验目录。早期人类研究导出可能包含可识别字段，只能在符合知情同意和机构研究伦理要求的情况下使用。
-
-## 引用
-
-2025 年论文是匿名投稿版本，此处以论文标题和项目年份标识。具有完整作者信息的 2026 年后续论文引用列在最后一节。
-
-## 许可证
-
-项目尚未声明开源许可证。在添加许可证前，仓库虽然可以公开查看，但不会自动授予复用权。若要在关联研究材料规定范围之外重新分发代码或数据，请先联系作者。
+运行脚本前，请将输入和输出路径调整为下载文件所在的位置。API 实验脚本需要在本地 `api_info.txt` 中配置相应凭据。
 
 ## 2026 年后续论文与版本对照
 
@@ -127,15 +101,4 @@ python -m pip install -r requirements.txt
 | Task 1 指标 | 以 2 为底的对数误差 | 归一化绝对百分比误差；Step 1 的 RGB 输出通过 CIELAB2000 映射回色图数值 |
 | 核心结果 | 分析提示和微调在不同任务及模型上的效果 | CoT 对部分模型有益，却让较强模型的 Task 1 相对误差最多增加 84.76%；微调最多降低 43.80% 的相对误差 |
 
-GitHub 当前保存的 [`codes/api/`](codes/api/) 脚本明确调用 GPT-4o，因此对应 2025 年工作流。2026 年新增专有模型的输出保存在 OSF 的大写 [`Task1.zip`](https://osf.io/download/69f49481b19cd9a17a875458/?view_only=be060a5816bf4edbaaf66a695d57dee0) 和 [`Task2.zip`](https://osf.io/download/69f494bd558fb0c42bd94811/?view_only=be060a5816bf4edbaaf66a695d57dee0) 中。小写 `task1.zip`、`task2.zip` 则保留汇总工作簿、微调结果和 `8b`、`40b` 等早期标签。
-
-如需引用后续论文，请使用：
-
-```bibtex
-@misc{liu2026mllmperception,
-  title  = {MLLM Perception of Color-Encoded Scalar Fields Reveals Model-Dependent Inversion of Chain-of-Thought},
-  author = {Liu, Minyi and Zhao, Yue and Song, Xiaoyang and Qian, Shufan and Bian, Yulong and Zeng, Qiong},
-  year   = {2026},
-  url    = {https://jackz.cn/static/media/paper/03e096af81174c169c62568de5562038.pdf}
-}
-```
+[`codes/api/`](codes/api/) 中的脚本调用 GPT-4o，对应 2025 年工作流。2026 年新增模型输出见 OSF 的 [`Task1.zip`](https://osf.io/download/69f49481b19cd9a17a875458/?view_only=be060a5816bf4edbaaf66a695d57dee0) 和 [`Task2.zip`](https://osf.io/download/69f494bd558fb0c42bd94811/?view_only=be060a5816bf4edbaaf66a695d57dee0)。
