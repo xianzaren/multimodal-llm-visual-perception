@@ -38,6 +38,23 @@ The 2026 study evaluates five MLLMs: GPT-5.4, Claude Opus 4.7, Gemini 3.1 Pro, S
 
 Fine-tuning uses 9,450 image-prompt pairs for Task 1 and 9,000 pairs for Task 2. Large datasets and complete experimental outputs are hosted on OSF instead of being duplicated in Git.
 
+## Experiment activity index
+
+This index connects each reported activity to the corresponding code, prompt, dataset, result archive, and paper section. OSF filenames are case-sensitive and are reproduced exactly because the archived files cannot be reorganized from this repository.
+
+| Experimental activity | Configuration and scale | GitHub record | OSF evidence | Paper reference |
+| --- | --- | --- | --- | --- |
+| Task 1 benchmark construction | Value identification; 5 spatial frequencies × 9 colormaps = 45 visualizations | [`CreateTask1Dataset.py`](task1/CreateTask1Dataset.py) and [`task1/`](task1/) | [`task1 dataset.zip`](https://osf.io/download/xmnd5/?view_only=be060a5816bf4edbaaf66a695d57dee0) | Sec. 4.1; Fig. 2 |
+| Task 1 prompting evaluation | Baseline, CoT, decomposed Step 1, and decomposed Step 2 across evaluated MLLMs | [`codes/api/`](codes/api/), [`CalculateError.py`](task1/CalculateError.py), and [`visualization/`](visualization/) | [`task1.txt`](https://osf.io/download/wtxra/?view_only=be060a5816bf4edbaaf66a695d57dee0); [`task1.zip`](https://osf.io/download/a8mnq/?view_only=be060a5816bf4edbaaf66a695d57dee0); [`Task1.zip`](https://osf.io/download/69f49481b19cd9a17a875458/?view_only=be060a5816bf4edbaaf66a695d57dee0) | Secs. 3.2 and 4.2; Fig. 2 |
+| Task 1 fine-tuning | InternVL2-8B; 9,450 image-prompt pairs; Baseline-, CoT-, and Step-2-oriented construction | [`finetune data/`](finetune%20data/) | [`fine-tune task1 dataset.zip`](https://osf.io/download/be9t6/?view_only=be060a5816bf4edbaaf66a695d57dee0); fine-tuned workbooks in [`task1.zip`](https://osf.io/download/a8mnq/?view_only=be060a5816bf4edbaaf66a695d57dee0) | Secs. 3.3 and 4.2; Fig. 2 |
+| Task 2 benchmark construction | Gradient comparison; 180 visualizations, each queried 10 times in the reported evaluation | [`CreateTask2Dataset.py`](task2/CreateTask2Dataset.py) and [`task2/`](task2/) | [`task2 dataset.zip`](https://osf.io/download/ysqud/?view_only=be060a5816bf4edbaaf66a695d57dee0) | Sec. 4.1; Figs. 3–4 |
+| Task 2 prompting evaluation | Baseline, CoT, decomposed Step 1, and decomposed Step 2 across evaluated MLLMs | [`codes/api/`](codes/api/), [`CalculateAccuarcy.py`](task2/CalculateAccuarcy.py), and [`visualization/`](visualization/) | [`task2.txt`](https://osf.io/download/fm24q/?view_only=be060a5816bf4edbaaf66a695d57dee0); [`task2.zip`](https://osf.io/download/62n7t/?view_only=be060a5816bf4edbaaf66a695d57dee0); [`Task2.zip`](https://osf.io/download/69f494bd558fb0c42bd94811/?view_only=be060a5816bf4edbaaf66a695d57dee0) | Secs. 3.2 and 4.3; Figs. 3–4 |
+| Task 2 fine-tuning | InternVL2-8B; 9,000 image-prompt pairs; Baseline-, CoT-, and Step-2-oriented construction | [`finetune data/`](finetune%20data/) and [`finetune_exp2.jsonl`](finetune_exp2.jsonl) | [`fine-tune task2 dataset.zip`](https://osf.io/download/cbgws/?view_only=be060a5816bf4edbaaf66a695d57dee0); fine-tuned workbooks in [`task2.zip`](https://osf.io/download/62n7t/?view_only=be060a5816bf4edbaaf66a695d57dee0) | Secs. 3.3 and 4.3; Fig. 3 |
+| Exploratory human-workflow collection | Questionnaire and workshop material used during the earlier prompt-design phase | [`file/questionnaire app/`](file/questionnaire%20app/) and [`questionnaire or workshop/`](questionnaire%20or%20workshop/) | Repository snapshot only | Historical design evidence; not the source of the 2026 paper's reported human baselines |
+| Result aggregation and paper figures | Error/accuracy aggregation, confidence intervals, line charts, and attention/selection visualizations | [`visualization/`](visualization/) and [`drawpic/`](drawpic/) | The Task 1 and Task 2 result archives linked above | Figs. 2–4 and supplementary material |
+
+**OSF result-package note.** The lowercase archives, `task1.zip` and `task2.zip`, contain aggregate workbooks, fine-tuning results, and files that retain earlier model labels such as `8b` and `40b`. The uppercase archives, `Task1.zip` and `Task2.zip`, contain additional newer-model output files, including GPT-5.4, Claude Opus 4.7, Gemini 3.1 Pro, and Seed/Doubao records. The package names are preserved as archived; use the table above to interpret their roles.
+
 ## Repository contents
 
 ```text

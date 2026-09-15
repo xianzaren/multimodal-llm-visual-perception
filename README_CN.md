@@ -38,6 +38,23 @@
 
 Task 1 微调使用 9,450 个图像—提示词对，Task 2 使用 9,000 个。大型数据集和完整实验输出存放在 OSF，不在 Git 中重复保存。
 
+## 实验活动索引
+
+下表将论文中报告的实验活动与相应代码、提示词、数据集、结果压缩包及论文章节对应起来。OSF 文件名区分大小写；由于本仓库不能调整已经归档的 OSF 文件，表中保留其原始名称。
+
+| 实验活动 | 配置与规模 | GitHub 记录 | OSF 证据 | 论文位置 |
+| --- | --- | --- | --- | --- |
+| Task 1 基准数据构建 | 数值识别；5 种空间频率 × 9 种色图，共 45 张可视化 | [`CreateTask1Dataset.py`](task1/CreateTask1Dataset.py) 和 [`task1/`](task1/) | [`task1 dataset.zip`](https://osf.io/download/xmnd5/?view_only=be060a5816bf4edbaaf66a695d57dee0) | 第 4.1 节；图 2 |
+| Task 1 提示策略评估 | 在所评估 MLLM 上运行 Baseline、CoT、分解 Step 1 和分解 Step 2 | [`codes/api/`](codes/api/)、[`CalculateError.py`](task1/CalculateError.py) 和 [`visualization/`](visualization/) | [`task1.txt`](https://osf.io/download/wtxra/?view_only=be060a5816bf4edbaaf66a695d57dee0)；[`task1.zip`](https://osf.io/download/a8mnq/?view_only=be060a5816bf4edbaaf66a695d57dee0)；[`Task1.zip`](https://osf.io/download/69f49481b19cd9a17a875458/?view_only=be060a5816bf4edbaaf66a695d57dee0) | 第 3.2、4.2 节；图 2 |
+| Task 1 微调 | InternVL2-8B；9,450 个图像—提示词对；包含面向 Baseline、CoT 和 Step 2 的数据构建 | [`finetune data/`](finetune%20data/) | [`fine-tune task1 dataset.zip`](https://osf.io/download/be9t6/?view_only=be060a5816bf4edbaaf66a695d57dee0)；[`task1.zip`](https://osf.io/download/a8mnq/?view_only=be060a5816bf4edbaaf66a695d57dee0) 中的微调结果工作簿 | 第 3.3、4.2 节；图 2 |
+| Task 2 基准数据构建 | 梯度比较；180 张可视化，每张在论文评估中查询 10 次 | [`CreateTask2Dataset.py`](task2/CreateTask2Dataset.py) 和 [`task2/`](task2/) | [`task2 dataset.zip`](https://osf.io/download/ysqud/?view_only=be060a5816bf4edbaaf66a695d57dee0) | 第 4.1 节；图 3–4 |
+| Task 2 提示策略评估 | 在所评估 MLLM 上运行 Baseline、CoT、分解 Step 1 和分解 Step 2 | [`codes/api/`](codes/api/)、[`CalculateAccuarcy.py`](task2/CalculateAccuarcy.py) 和 [`visualization/`](visualization/) | [`task2.txt`](https://osf.io/download/fm24q/?view_only=be060a5816bf4edbaaf66a695d57dee0)；[`task2.zip`](https://osf.io/download/62n7t/?view_only=be060a5816bf4edbaaf66a695d57dee0)；[`Task2.zip`](https://osf.io/download/69f494bd558fb0c42bd94811/?view_only=be060a5816bf4edbaaf66a695d57dee0) | 第 3.2、4.3 节；图 3–4 |
+| Task 2 微调 | InternVL2-8B；9,000 个图像—提示词对；包含面向 Baseline、CoT 和 Step 2 的数据构建 | [`finetune data/`](finetune%20data/) 和 [`finetune_exp2.jsonl`](finetune_exp2.jsonl) | [`fine-tune task2 dataset.zip`](https://osf.io/download/cbgws/?view_only=be060a5816bf4edbaaf66a695d57dee0)；[`task2.zip`](https://osf.io/download/62n7t/?view_only=be060a5816bf4edbaaf66a695d57dee0) 中的微调结果工作簿 | 第 3.3、4.3 节；图 3 |
+| 人类工作流探索性收集 | 早期提示设计阶段使用的问卷与 workshop 材料 | [`file/questionnaire app/`](file/questionnaire%20app/) 和 [`questionnaire or workshop/`](questionnaire%20or%20workshop/) | 仅保留仓库快照 | 历史设计证据；并非 2026 论文中人类基线的数据来源 |
+| 结果汇总与论文图表 | 误差/准确率汇总、置信区间、折线图及注意力/选择可视化 | [`visualization/`](visualization/) 和 [`drawpic/`](drawpic/) | 上述 Task 1、Task 2 结果压缩包 | 图 2–4 及补充材料 |
+
+**OSF 结果包说明。** 小写的 `task1.zip`、`task2.zip` 包含汇总工作簿、微调结果以及沿用 `8b`、`40b` 等早期模型标签的文件；大写的 `Task1.zip`、`Task2.zip` 包含更多新模型输出，包括 GPT-5.4、Claude Opus 4.7、Gemini 3.1 Pro 和 Seed/Doubao 记录。上述名称均按 OSF 现有归档保留，请使用本表判断其用途。
+
 ## 仓库内容
 
 ```text
