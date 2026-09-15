@@ -7,9 +7,9 @@ Research code and project materials for the 2025 project manuscript:
 > **Evaluating and Adapting Multimodal LLMs for Graphical Perception in Color-Encoded Scalar Field Visualization**
 > 2025 project manuscript (anonymous submission copy)
 
-[OSF datasets, prompts, and results](https://osf.io/y4pgm/) | [Supplementary material](LLMPerception_Supp.pdf) | [2026 revised manuscript](https://jackz.cn/static/media/paper/03e096af81174c169c62568de5562038.pdf)
+[OSF datasets, prompts, and results](https://osf.io/y4pgm/) | [Supplementary material](LLMPerception_Supp.pdf)
 
-> **Version scope.** This repository mainly preserves the implementation and research materials completed during the 2025 project stage. The 2026 manuscript is a subsequent revision with a new model panel, updated evaluation protocol, and additional results. See [What the 2026 manuscript adds](#what-the-2026-manuscript-adds) for a precise comparison.
+> **Version scope.** This repository mainly preserves the implementation and research materials completed during the 2025 project stage. A later 2026 manuscript is documented only in the final [follow-up comparison](#2026-follow-up-paper-and-comparison).
 
 ## Overview
 
@@ -53,24 +53,6 @@ This index connects the 2025 project activities to the corresponding GitHub file
 | Task 2 prompting evaluation | Baseline, CoT, decomposed Step 1, and decomposed Step 2; original model workflow | [`codes/api/`](codes/api/), [`CalculateAccuarcy.py`](task2/CalculateAccuarcy.py), and [`visualization/`](visualization/) | [`task2.txt`](https://osf.io/download/fm24q/?view_only=be060a5816bf4edbaaf66a695d57dee0); [`task2.zip`](https://osf.io/download/62n7t/?view_only=be060a5816bf4edbaaf66a695d57dee0) | Secs. 4.1–4.3 and 5.2; Fig. 5 |
 | Task 2 fine-tuning | InternVL2-8B; 9,000 reported pairs across the three prompt types | [`finetune data/`](finetune%20data/) and [`finetune_exp2.jsonl`](finetune_exp2.jsonl) | [`fine-tune task2 dataset.zip`](https://osf.io/download/cbgws/?view_only=be060a5816bf4edbaaf66a695d57dee0); fine-tuned workbooks in [`task2.zip`](https://osf.io/download/62n7t/?view_only=be060a5816bf4edbaaf66a695d57dee0) | Sec. 4.4 and Sec. 5.2; Figs. 3 and 5 |
 | Result aggregation and figures | Log-error/error-rate summaries, confidence intervals, line charts, and attention maps | [`visualization/`](visualization/) and [`drawpic/`](drawpic/) | The lowercase Task 1 and Task 2 result archives linked above | Secs. 5.2–5.3; Figs. 4–6 |
-
-## What the 2026 manuscript adds
-
-The [2026 revised manuscript](https://jackz.cn/static/media/paper/03e096af81174c169c62568de5562038.pdf), **MLLM Perception of Color-Encoded Scalar Fields Reveals Model-Dependent Inversion of Chain-of-Thought**, retains the two tasks, two-step perception framework, five spatial frequencies, nine colormaps, and InternVL2-8B fine-tuning from the 2025 project. It then updates the study as follows:
-
-| Aspect | 2025 project manuscript | 2026 revised manuscript |
-| --- | --- | --- |
-| Research emphasis | Evaluating MLLM graphical perception and testing structured prompting and fine-tuning | Explaining the model-dependent inversion of CoT and motivating capability-aware prompting |
-| Human evidence | New empirical study and workshop with 18 participants | Uses the established two-step workflow as scaffolding and derives human baselines from Reda et al. under the revised evaluation protocol |
-| Evaluated models | GPT-4o, Gemini 1.5 Pro, GLM-4V-9B, InternVL2-8B, InternVL2-40B | GPT-5.4, Claude Opus 4.7, Gemini 3.1 Pro, Seed 2.0 Pro, InternVL2-8B |
-| Task terminology | Task 1 is called quantity estimation | Task 1 is called value identification |
-| Benchmark rendering | 45 Task 1 and 180 Task 2 visualizations at 987 × 630 pixels | The same counts at 820 × 630 pixels |
-| Task 1 fine-tuning | Reports 44,775 image-prompt pairs | Uses 9,450 pairs from 21 value queries per field plus 30% random-crop augmentation |
-| Fine-tuning method | Ground-truth supervision for baseline, CoT, and linking-step prompts | Specifies LoRA for InternVL2-8B, CE plus a spatial-distance term for Task 1, and CE for Task 2 |
-| Task 1 metric | Base-2 logarithmic error | Normalized absolute percentage error; Step 1 RGB outputs are mapped back through the colormap with CIELAB2000 |
-| Principal result | Prompting and fine-tuning effects are examined across tasks and models | CoT helps some models but harms stronger models by up to 84.76% relative error on Task 1; fine-tuning improves error by up to 43.80% |
-
-The GitHub API scripts currently preserved in [`codes/api/`](codes/api/) explicitly use GPT-4o and therefore document the 2025 workflow. The additional 2026 proprietary-model outputs are archived on OSF in the uppercase [`Task1.zip`](https://osf.io/download/69f49481b19cd9a17a875458/?view_only=be060a5816bf4edbaaf66a695d57dee0) and [`Task2.zip`](https://osf.io/download/69f494bd558fb0c42bd94811/?view_only=be060a5816bf4edbaaf66a695d57dee0) packages. The lowercase `task1.zip` and `task2.zip` packages retain aggregate workbooks, fine-tuning results, and earlier labels such as `8b` and `40b`. This README does not claim that the original GitHub API scripts reproduce every 2026 model call.
 
 ## Repository contents
 
@@ -121,7 +103,33 @@ Do not commit participant names, contact details, demographics, submission times
 
 ## Citation
 
-The supplied 2025 manuscript is an anonymous submission copy, so this README does not invent an author list for it. For the latest named version of the work, cite the 2026 revised manuscript:
+The supplied 2025 manuscript is an anonymous submission copy. This repository therefore identifies it by title and project year without inventing an author list. The named 2026 follow-up citation is provided in the final section below.
+
+## License
+
+No open-source license has been declared yet. Until a license is added, the repository is publicly viewable but reuse rights are not granted automatically. Please contact the authors before redistributing code or data outside the terms stated by the linked research artifacts.
+
+## 2026 follow-up paper and comparison
+
+> **Contribution scope.** The maintainer's primary contribution represented by this repository is the 2025 project. This section records how the research was extended in a later paper and should not be interpreted as a claim of deep participation in every addition made for the 2026 revision.
+
+The [2026 revised manuscript](https://jackz.cn/static/media/paper/03e096af81174c169c62568de5562038.pdf), **MLLM Perception of Color-Encoded Scalar Fields Reveals Model-Dependent Inversion of Chain-of-Thought**, retains the two tasks, two-step perception framework, five spatial frequencies, nine colormaps, and InternVL2-8B fine-tuning from the 2025 project. It then updates the study as follows:
+
+| Aspect | 2025 project manuscript | 2026 revised manuscript |
+| --- | --- | --- |
+| Research emphasis | Evaluating MLLM graphical perception and testing structured prompting and fine-tuning | Explaining the model-dependent inversion of CoT and motivating capability-aware prompting |
+| Human evidence | New empirical study and workshop with 18 participants | Uses the established two-step workflow as scaffolding and derives human baselines from Reda et al. under the revised evaluation protocol |
+| Evaluated models | GPT-4o, Gemini 1.5 Pro, GLM-4V-9B, InternVL2-8B, InternVL2-40B | GPT-5.4, Claude Opus 4.7, Gemini 3.1 Pro, Seed 2.0 Pro, InternVL2-8B |
+| Task terminology | Task 1 is called quantity estimation | Task 1 is called value identification |
+| Benchmark rendering | 45 Task 1 and 180 Task 2 visualizations at 987 × 630 pixels | The same counts at 820 × 630 pixels |
+| Task 1 fine-tuning | Reports 44,775 image-prompt pairs | Uses 9,450 pairs from 21 value queries per field plus 30% random-crop augmentation |
+| Fine-tuning method | Ground-truth supervision for baseline, CoT, and linking-step prompts | Specifies LoRA for InternVL2-8B, CE plus a spatial-distance term for Task 1, and CE for Task 2 |
+| Task 1 metric | Base-2 logarithmic error | Normalized absolute percentage error; Step 1 RGB outputs are mapped back through the colormap with CIELAB2000 |
+| Principal result | Prompting and fine-tuning effects are examined across tasks and models | CoT helps some models but harms stronger models by up to 84.76% relative error on Task 1; fine-tuning improves error by up to 43.80% |
+
+The GitHub API scripts currently preserved in [`codes/api/`](codes/api/) explicitly use GPT-4o and therefore document the 2025 workflow. The additional 2026 proprietary-model outputs are archived on OSF in the uppercase [`Task1.zip`](https://osf.io/download/69f49481b19cd9a17a875458/?view_only=be060a5816bf4edbaaf66a695d57dee0) and [`Task2.zip`](https://osf.io/download/69f494bd558fb0c42bd94811/?view_only=be060a5816bf4edbaaf66a695d57dee0) packages. The lowercase `task1.zip` and `task2.zip` packages retain aggregate workbooks, fine-tuning results, and earlier labels such as `8b` and `40b`. This README does not claim that the original GitHub API scripts reproduce every 2026 model call.
+
+If the follow-up paper is cited, use:
 
 ```bibtex
 @misc{liu2026mllmperception,
@@ -131,7 +139,3 @@ The supplied 2025 manuscript is an anonymous submission copy, so this README doe
   url    = {https://jackz.cn/static/media/paper/03e096af81174c169c62568de5562038.pdf}
 }
 ```
-
-## License
-
-No open-source license has been declared yet. Until a license is added, the repository is publicly viewable but reuse rights are not granted automatically. Please contact the authors before redistributing code or data outside the terms stated by the linked research artifacts.
